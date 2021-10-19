@@ -17,7 +17,8 @@ module.exports = {
         port: 3000,
         static: {
             directory: join(__dirname),
-        }
+        },
+        compress: true
     },
     mode: 'development'
 };
