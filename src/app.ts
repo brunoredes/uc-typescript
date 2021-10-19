@@ -3,3 +3,5 @@ const pizzas = [
 ];
 
 pizzas.map(pizza => pizza.name.toUpperCase());
+
+console.log(pizzas);
