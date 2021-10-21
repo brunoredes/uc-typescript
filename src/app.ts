@@ -162,19 +162,31 @@ function neverType(): void {
     orderError('Something went wrong');
 }
 
-(() => {
-    Promise.all([
-        arraySpread,
-        arrowFunctionAndImplicitReturn,
-        destructuring,
-        numberTypes,
-        objectLiterals,
-        restOperator,
-        stringTypes,
-        booleanType,
-        anyType,
-        implicitVsExplicitTypes,
-        voidType,
-        neverType
+function nullUndefinedStrictNullChecks() {
+    let coupon: string | null = 'pizza25';
+
+    function removeCoupon() {
+        coupon = null;
+    }
+
+    console.log(coupon);
+    removeCoupon();
+    console.log(coupon);
+}
+
+(async () => {
+    await Promise.all([
+        arraySpread(),
+        arrowFunctionAndImplicitReturn(),
+        destructuring(),
+        numberTypes(),
+        objectLiterals(),
+        restOperator(),
+        stringTypes(),
+        booleanType(),
+        anyType(),
+        implicitVsExplicitTypes(),
+        voidType(),
+        neverType()
     ]);
 })();
