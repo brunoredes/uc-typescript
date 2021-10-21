@@ -154,6 +154,27 @@ function voidType(): void {
     console.log(selectTopping);
 }
 
+function neverType(): void {
+    function orderError(error: string): never {
+        throw new Error(error);
+    }
+
+    orderError('Something went wrong');
+}
+
 (() => {
-    arraySpread(), arrowFunctionAndImplicitReturn(), destructuring(), numberTypes(), objectLiterals(), restOperator(), stringTypes(), booleanType()
+    Promise.all([
+        arraySpread,
+        arrowFunctionAndImplicitReturn,
+        destructuring,
+        numberTypes,
+        objectLiterals,
+        restOperator,
+        stringTypes,
+        booleanType,
+        anyType,
+        implicitVsExplicitTypes,
+        voidType,
+        neverType
+    ]);
 })();
