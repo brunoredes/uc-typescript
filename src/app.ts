@@ -103,3 +103,57 @@ function numberTypes(): void {
     const cost: number = calculatePrice(pizzaCost, pizzaToppings);
     console.log(`Pizza costs ${cost}`);
 }
+
+// string type, string literals
+function stringTypes(): void {
+    const coupon: string = 'pizza25';
+
+    function normalizeCoupon(code: string): string {
+        return code.toUpperCase();
+    }
+
+    const couponMessage: string = `Final coupon is ${normalizeCoupon(coupon)}`;
+    console.log(couponMessage);
+}
+
+// boolean ts
+function booleanType() {
+    const pizzas: number = 5;
+    function offerDiscount(orders: number): boolean {
+        return orders >= 3;
+    }
+
+    offerDiscount(pizzas) ? console.log(`You're entitled to a discount!`) : console.log(`Order more than 3 pizzas for a discount`);
+}
+
+// any type
+function anyType() {
+    let coupon;
+
+    coupon = 25;
+    coupon = '25';
+    coupon = true;
+    // any accept lots of type
+}
+
+function implicitVsExplicitTypes(): void {
+    let implicitCoupon = 'pizza25';
+    // let explicitCoupon: string = 'pizza25';
+    let explicitCoupon: string;
+
+    explicitCoupon = 'pizza25';
+}
+
+function voidType(): void {
+    let selectedTopping: string = 'margherita';
+    function selectTopping(topping: string): void {
+        selectedTopping = topping;
+    }
+
+    selectTopping('bacon');
+    console.log(selectTopping);
+}
+
+(() => {
+    arraySpread(), arrowFunctionAndImplicitReturn(), destructuring(), numberTypes(), objectLiterals(), restOperator(), stringTypes(), booleanType()
+})();
