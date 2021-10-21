@@ -174,6 +174,20 @@ function nullUndefinedStrictNullChecks() {
     console.log(coupon);
 }
 
+function unionTypesAndLiteralTypes() {
+    // union type é quando usamos o operador "|" na tipagem;
+    // literal types é quando tipamos com valores fixos, sem ser os tipos padrões
+
+    let pizzaSize: string | number = 'small';
+
+    function selectSize(size: 'small' | 'medium' | 'large' | 1 | 2 | 3): void {
+        pizzaSize = size;
+    }
+
+    selectSize('medium');
+    console.log(`Pizza sizes is ${selectSize}`);
+}
+
 (async () => {
     await Promise.all([
         arraySpread(),
@@ -187,6 +201,7 @@ function nullUndefinedStrictNullChecks() {
         anyType(),
         implicitVsExplicitTypes(),
         voidType(),
-        neverType()
+        neverType(),
+        unionTypesAndLiteralTypes()
     ]);
 })();
