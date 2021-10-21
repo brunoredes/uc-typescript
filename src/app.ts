@@ -178,14 +178,51 @@ function unionTypesAndLiteralTypes() {
     // union type é quando usamos o operador "|" na tipagem;
     // literal types é quando tipamos com valores fixos, sem ser os tipos padrões
 
-    let pizzaSize: string | number = 'small';
+    let pizzaSize: string = 'small';
+    // let pizzaSize: number = 1;
 
-    function selectSize(size: 'small' | 'medium' | 'large' | 1 | 2 | 3): void {
+    // function selectSize(size: 1 | 2 | 3): void {
+    // pizzaSize = size;
+    // }
+    function selectSize(size: 'small' | 'medium' | 'large'): void {
         pizzaSize = size;
     }
 
     selectSize('medium');
+    // selectSize(3);
     console.log(`Pizza sizes is ${selectSize}`);
+}
+
+function functionTypes() {
+    // let orderPrice: Function;
+    let orderPrice: (price: number, quantity: number) => number;
+
+    orderPrice = (x, y) => x * y;
+
+    const price = orderPrice(25, 2);
+    console.log(`Total price: ${price}`);
+}
+
+function functionTypesWithOptionals() {
+    // let orderPrice: Function;
+    let orderPrice: (price: number, quantity?: number) => number;
+
+    orderPrice = (x, y) => {
+        return y ? x * y : x;
+    };
+
+    const price = orderPrice(25, 2);
+    console.log(`Total price: ${price}`);
+}
+
+function typedFunction() {
+    // let orderPrice: Function;
+    let orderPrice: (price: number, quantity?: number) => number;
+
+    orderPrice = (x, y = 5) => x * y;
+
+    const price = orderPrice(25);
+    console.log(`Total price: ${price}`);
 }
 
 (async () => {
