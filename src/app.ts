@@ -237,6 +237,41 @@ function objectType() {
     };
 }
 
+// data structures
+function arrayTypesAndGenerics() {
+    let sizes: string[];
+
+    sizes = ['small', 'medium', 'large'];
+
+    // generics type
+    let toppings: Array<string>;
+    toppings = ['pepperoni', 'tomato', 'bacon'];
+}
+
+function tupleTypes() {
+    let pizza: [string, number, boolean];
+
+    pizza = ['Pepperoni', 20, true];
+}
+
+
+// Type Alias and Assertions
+
+// Type Alias
+function typeAlias(): void {
+    type Size = 'small' | 'medium' | 'large';
+
+    type Callback = (size: Size) => void;
+
+    let pizzaSize: Size = 'small';
+
+    const selectSize: Callback = (x): void => {
+        pizzaSize = x;
+    }
+
+    selectSize('small');
+}
+
 (async () => {
     await Promise.all([
         arraySpread(),
