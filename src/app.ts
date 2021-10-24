@@ -272,7 +272,29 @@ function typeAlias(): void {
     selectSize('small');
 }
 
+function typeAssertions() {
+    type Pizza = {
+        name: string
+        toppings: number
+    }
+    const pizza: Pizza = { name: 'margherita', toppings: 5 };
+
+    const serializedPizza = JSON.stringify(pizza);
+
+    function getNameFromJson(object: string) {
+        try {
+            return (JSON.parse(object) as Pizza).name;
+        } catch (error) {
+            console.log('Error during parse value to object', error);
+            return null;
+        }
+    }
+
+    getNameFromJson(serializedPizza);
+}
+
 (async () => {
+    // neverType(),
     await Promise.all([
         arraySpread(),
         arrowFunctionAndImplicitReturn(),
@@ -285,7 +307,13 @@ function typeAlias(): void {
         anyType(),
         implicitVsExplicitTypes(),
         voidType(),
-        neverType(),
-        unionTypesAndLiteralTypes()
+        unionTypesAndLiteralTypes(),
+        functionTypes(),
+        functionTypesWithOptionals(),
+        typedFunction(),
+        objectType(),
+        arrayTypesAndGenerics(),
+        typeAlias(),
+        typeAssertions()
     ]);
 })();
