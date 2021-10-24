@@ -293,6 +293,25 @@ function typeAssertions() {
     getNameFromJson(serializedPizza);
 }
 
+class DivingIntoInterfaces {
+    creatingInterfaces() {
+        interface Pizza {
+            name: string;
+            sizes: string[];
+        }
+
+        let pizza: Pizza;
+
+        function createPizza(name: string, sizes: string[]): Pizza {
+            return {
+                name, sizes
+            };
+        }
+
+        pizza = createPizza('Margherita', ['small', 'medium']);
+    }
+}
+
 (async () => {
     // neverType(),
     await Promise.all([
