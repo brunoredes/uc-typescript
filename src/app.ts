@@ -330,10 +330,17 @@ class TypeLiasAndAssertions {
 
 class DivingIntoInterfaces {
     creatingInterfaces() {
-        interface Pizza {
-            name: string;
+        interface Sizes {
             sizes: string[];
+
+        }
+        interface Pizza extends Sizes {
+            name: string;
+            toppings?: number;
             getAvailableSizes(): string[];
+
+            // index signature
+            [key: number]: string;
         }
 
         let pizza: Pizza;
@@ -347,5 +354,7 @@ class DivingIntoInterfaces {
         }
 
         pizza = createPizza('Margherita', ['small', 'medium']);
+        pizza.toppings = 1;
+        pizza[1] = 'xyz';
     }
 }
