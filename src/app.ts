@@ -99,206 +99,233 @@ class Destructuring {
     }
 }
 
-// number, arguments and functions
-function numberTypes(): void {
-    const pizzaCost: number = 10;
-    const pizzaToppings: number = 5;
+class NumberTypes {
+    // number, arguments and functions
+    numberTypes(): void {
+        const pizzaCost: number = 10;
+        const pizzaToppings: number = 5;
 
-    function calculatePrice(cost: number, toppings: number): number {
-        return cost + 1.5 * toppings;
-    }
-
-    const cost: number = calculatePrice(pizzaCost, pizzaToppings);
-    console.log(`Pizza costs ${cost}`);
-}
-
-// string type, string literals
-function stringTypes(): void {
-    const coupon: string = 'pizza25';
-
-    function normalizeCoupon(code: string): string {
-        return code.toUpperCase();
-    }
-
-    const couponMessage: string = `Final coupon is ${normalizeCoupon(coupon)}`;
-    console.log(couponMessage);
-}
-
-// boolean ts
-function booleanType() {
-    const pizzas: number = 5;
-    function offerDiscount(orders: number): boolean {
-        return orders >= 3;
-    }
-
-    offerDiscount(pizzas) ? console.log(`You're entitled to a discount!`) : console.log(`Order more than 3 pizzas for a discount`);
-}
-
-// any type
-function anyType() {
-    let coupon;
-
-    coupon = 25;
-    coupon = '25';
-    coupon = true;
-    // any accept lots of type
-}
-
-function implicitVsExplicitTypes(): void {
-    let implicitCoupon = 'pizza25';
-    // let explicitCoupon: string = 'pizza25';
-    let explicitCoupon: string;
-
-    explicitCoupon = 'pizza25';
-}
-
-function voidType(): void {
-    let selectedTopping: string = 'margherita';
-    function selectTopping(topping: string): void {
-        selectedTopping = topping;
-    }
-
-    selectTopping('bacon');
-    console.log(selectTopping);
-}
-
-function neverType(): void {
-    function orderError(error: string): never {
-        throw new Error(error);
-    }
-
-    orderError('Something went wrong');
-}
-
-function nullUndefinedStrictNullChecks() {
-    let coupon: string | null = 'pizza25';
-
-    function removeCoupon() {
-        coupon = null;
-    }
-
-    console.log(coupon);
-    removeCoupon();
-    console.log(coupon);
-}
-
-function unionTypesAndLiteralTypes() {
-    // union type é quando usamos o operador "|" na tipagem;
-    // literal types é quando tipamos com valores fixos, sem ser os tipos padrões
-
-    let pizzaSize: string = 'small';
-    // let pizzaSize: number = 1;
-
-    // function selectSize(size: 1 | 2 | 3): void {
-    // pizzaSize = size;
-    // }
-    function selectSize(size: 'small' | 'medium' | 'large'): void {
-        pizzaSize = size;
-    }
-
-    selectSize('medium');
-    // selectSize(3);
-    console.log(`Pizza sizes is ${selectSize}`);
-}
-
-function functionTypes() {
-    // let orderPrice: Function;
-    let orderPrice: (price: number, quantity: number) => number;
-
-    orderPrice = (x, y) => x * y;
-
-    const price = orderPrice(25, 2);
-    console.log(`Total price: ${price}`);
-}
-
-function functionTypesWithOptionals() {
-    // let orderPrice: Function;
-    let orderPrice: (price: number, quantity?: number) => number;
-
-    orderPrice = (x, y) => {
-        return y ? x * y : x;
-    };
-
-    const price = orderPrice(25, 2);
-    console.log(`Total price: ${price}`);
-}
-
-function typedFunction() {
-    // let orderPrice: Function;
-    let orderPrice: (price: number, quantity?: number) => number;
-
-    orderPrice = (x, y = 5) => x * y;
-
-    const price = orderPrice(25);
-    console.log(`Total price: ${price}`);
-}
-
-function objectType() {
-    let pizza: { name: string, price: number, getName(): string };
-
-    pizza = {
-        name: 'Plain old Pepperoni',
-        price: 20,
-        getName() {
-            return pizza.name
+        function calculatePrice(cost: number, toppings: number): number {
+            return cost + 1.5 * toppings;
         }
-    };
-}
 
-// data structures
-function arrayTypesAndGenerics() {
-    let sizes: string[];
-
-    sizes = ['small', 'medium', 'large'];
-
-    // generics type
-    let toppings: Array<string>;
-    toppings = ['pepperoni', 'tomato', 'bacon'];
-}
-
-function tupleTypes() {
-    let pizza: [string, number, boolean];
-
-    pizza = ['Pepperoni', 20, true];
-}
-
-
-// Type Alias and Assertions
-
-// Type Alias
-function typeAlias(): void {
-    type Size = 'small' | 'medium' | 'large';
-
-    type Callback = (size: Size) => void;
-
-    let pizzaSize: Size = 'small';
-
-    const selectSize: Callback = (x): void => {
-        pizzaSize = x;
+        const cost: number = calculatePrice(pizzaCost, pizzaToppings);
+        console.log(`Pizza costs ${cost}`);
     }
 
-    selectSize('small');
 }
 
-function typeAssertions() {
-    type Pizza = {
-        name: string
-        toppings: number
-    }
-    const pizza: Pizza = { name: 'margherita', toppings: 5 };
+class StringTypes {
+    // string type, string literals
+    stringTypes(): void {
+        const coupon: string = 'pizza25';
 
-    const serializedPizza = JSON.stringify(pizza);
-
-    function getNameFromJson(object: string) {
-        try {
-            return (JSON.parse(object) as Pizza).name;
-        } catch (error) {
-            console.log('Error during parse value to object', error);
-            return null;
+        function normalizeCoupon(code: string): string {
+            return code.toUpperCase();
         }
+
+        const couponMessage: string = `Final coupon is ${normalizeCoupon(coupon)}`;
+        console.log(couponMessage);
     }
 
-    getNameFromJson(serializedPizza);
+}
+
+class BooleanType {
+    // boolean ts
+    booleanType() {
+        const pizzas: number = 5;
+        function offerDiscount(orders: number): boolean {
+            return orders >= 3;
+        }
+
+        offerDiscount(pizzas) ? console.log(`You're entitled to a discount!`) : console.log(`Order more than 3 pizzas for a discount`);
+    }
+}
+
+class AnyType {
+    // any type
+    protected anyType(): void {
+        let coupon;
+
+        coupon = 25;
+        coupon = '25';
+        coupon = true;
+        // any accept lots of type
+    }
+}
+
+class ImplicitAndExplicit {
+    implicitVsExplicitTypes(): void {
+        let implicitCoupon = 'pizza25';
+        // let explicitCoupon: string = 'pizza25';
+        let explicitCoupon: string;
+
+        explicitCoupon = 'pizza25';
+    }
+
+}
+
+class VoidType {
+    voidType(): void {
+        let selectedTopping: string = 'margherita';
+        function selectTopping(topping: string): void {
+            selectedTopping = topping;
+        }
+
+        selectTopping('bacon');
+        console.log(selectTopping);
+    }
+}
+class NeverType {
+    neverType(): void {
+        function orderError(error: string): never {
+            throw new Error(error);
+        }
+
+        orderError('Something went wrong');
+    }
+}
+
+class NullUndefinedAndStrictNullChecks {
+    nullUndefinedStrictNullChecks() {
+        let coupon: string | null = 'pizza25';
+
+        function removeCoupon() {
+            coupon = null;
+        }
+
+        console.log(coupon);
+        removeCoupon();
+        console.log(coupon);
+    }
+}
+
+class UnionTypesAndLiteralTypes {
+    unionTypesAndLiteralTypes() {
+        // union type é quando usamos o operador "|" na tipagem;
+        // literal types é quando tipamos com valores fixos, sem ser os tipos padrões
+
+        let pizzaSize: string = 'small';
+        // let pizzaSize: number = 1;
+
+        // function selectSize(size: 1 | 2 | 3): void {
+        // pizzaSize = size;
+        // }
+        function selectSize(size: 'small' | 'medium' | 'large'): void {
+            pizzaSize = size;
+        }
+
+        selectSize('medium');
+        // selectSize(3);
+        console.log(`Pizza sizes is ${selectSize}`);
+    }
+}
+class FunctionTypes {
+    functionTypes() {
+        // let orderPrice: Function;
+        let orderPrice: (price: number, quantity: number) => number;
+
+        orderPrice = (x, y) => x * y;
+
+        const price = orderPrice(25, 2);
+        console.log(`Total price: ${price}`);
+    }
+
+    functionTypesWithOptionals() {
+        // let orderPrice: Function;
+        let orderPrice: (price: number, quantity?: number) => number;
+
+        orderPrice = (x, y) => {
+            return y ? x * y : x;
+        };
+
+        const price = orderPrice(25, 2);
+        console.log(`Total price: ${price}`);
+    }
+
+    typedFunction() {
+        // let orderPrice: Function;
+        let orderPrice: (price: number, quantity?: number) => number;
+
+        orderPrice = (x, y = 5) => x * y;
+
+        const price = orderPrice(25);
+        console.log(`Total price: ${price}`);
+    }
+}
+
+class ObjectTypes {
+    objectType() {
+        let pizza: { name: string, price: number, getName(): string };
+
+        pizza = {
+            name: 'Plain old Pepperoni',
+            price: 20,
+            getName() {
+                return pizza.name
+            }
+        };
+    }
+}
+
+class ArrayTypesAndGenerics {
+    // data structures
+    arrayTypesAndGenerics() {
+        let sizes: string[];
+
+        sizes = ['small', 'medium', 'large'];
+
+        // generics type
+        let toppings: Array<string>;
+        toppings = ['pepperoni', 'tomato', 'bacon'];
+    }
+
+    tupleTypes() {
+        let pizza: [string, number, boolean];
+
+        pizza = ['Pepperoni', 20, true];
+    }
+
+}
+class TypeLiasAndAssertions {
+    // Type Alias and Assertions
+
+    // Type Alias
+    typeAlias(): void {
+        type Size = 'small' | 'medium' | 'large';
+
+        type Callback = (size: Size) => void;
+
+        let pizzaSize: Size = 'small';
+
+        const selectSize: Callback = (x): void => {
+            pizzaSize = x;
+        }
+
+        selectSize('small');
+    }
+
+    typeAssertions() {
+        type Pizza = {
+            name: string
+            toppings: number
+        }
+        const pizza: Pizza = { name: 'margherita', toppings: 5 };
+
+        const serializedPizza = JSON.stringify(pizza);
+
+        function getNameFromJson(object: string) {
+            try {
+                return (JSON.parse(object) as Pizza).name;
+            } catch (error) {
+                console.log('Error during parse value to object', error);
+                return null;
+            }
+        }
+
+        getNameFromJson(serializedPizza);
+    }
+
 }
 
 class DivingIntoInterfaces {
