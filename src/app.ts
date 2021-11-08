@@ -378,10 +378,12 @@ function classesPropAndInheritance() {
     console.log(sizes.availableSizes); // getter
     sizes.availableSizes = ['medium', 'large']; // setter
     console.log(sizes.availableSizes); // getter
-    class Pizza {
+    class Pizza extends Sizes {
         public toppings: string[] = [];
 
-        constructor(readonly name: string) { }
+        constructor(readonly name: string, sizes: string[]) {
+            super(sizes);
+        }
 
         public addTopping(topping: string) {
             this.toppings.push(topping);
@@ -389,7 +391,7 @@ function classesPropAndInheritance() {
 
     }
 
-    const pizza = new Pizza('Pepperoni');
+    const pizza = new Pizza('Pepperoni', ['small', 'medium']);
     pizza.addTopping('pits');
 
 }
