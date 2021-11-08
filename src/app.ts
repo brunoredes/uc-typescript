@@ -363,8 +363,18 @@ class ClassesPropAndInheritance {
 
 }
 function classesPropAndInheritance() {
-    class Sizes {
-        constructor(private sizes: Array<string>) { }
+    interface SizesInterface {
+        availableSizes: string[];
+    }
+
+    interface PizzaInterface extends SizesInterface {
+        readonly name: string;
+        toppings: string[];
+        updateSizes(sizes: string[]): void;
+        addToppings(topping: string): void;
+    }
+    abstract class Sizes implements SizesInterface {
+        constructor(protected sizes: Array<string>) { }
 
         set availableSizes(sizes: string[]) {
             this.sizes = sizes;
@@ -374,24 +384,36 @@ function classesPropAndInheritance() {
             return this.sizes;
         }
     }
-    const sizes = new Sizes(['small', 'medium']);
-    console.log(sizes.availableSizes); // getter
-    sizes.availableSizes = ['medium', 'large']; // setter
-    console.log(sizes.availableSizes); // getter
-    class Pizza extends Sizes {
+    class Pizza extends Sizes implements PizzaInterface {
         public toppings: string[] = [];
 
         constructor(readonly name: string, sizes: string[]) {
             super(sizes);
         }
 
-        public addTopping(topping: string) {
+        public addToppings(topping: string) {
             this.toppings.push(topping);
+        }
+
+        public updateSizes(sizes: Array<string>) {
+            this.sizes = sizes;
         }
 
     }
 
     const pizza = new Pizza('Pepperoni', ['small', 'medium']);
-    pizza.addTopping('pits');
+    pizza.addToppings('pits');
+    console.log(pizza.availableSizes);
+    pizza.updateSizes(['large']);
+    console.log(pizza.availableSizes);
+}
 
+function staticAndMethods() {
+    class Coupon {
+        static allowed = ['Margherita', 'Mussarela'];
+        static create(percentage: number): string {
+            return `PIZZA_RESTAURANT_${percentage}`;
+        }
+    }
+    console.log(Coupon.create(25));
 }
