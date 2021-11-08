@@ -363,10 +363,25 @@ class ClassesPropAndInheritance {
 
 }
 function classesPropAndInheritance() {
+    class Sizes {
+        constructor(private sizes: Array<string>) { }
+
+        set availableSizes(sizes: string[]) {
+            this.sizes = sizes;
+        }
+
+        get availableSizes(): string[] {
+            return this.sizes;
+        }
+    }
+    const sizes = new Sizes(['small', 'medium']);
+    console.log(sizes.availableSizes); // getter
+    sizes.availableSizes = ['medium', 'large']; // setter
+    console.log(sizes.availableSizes); // getter
     class Pizza {
         public toppings: string[] = [];
 
-        constructor(private name: string) {}
+        constructor(readonly name: string) { }
 
         public addTopping(topping: string) {
             this.toppings.push(topping);
