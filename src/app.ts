@@ -358,3 +358,23 @@ class DivingIntoInterfaces {
         pizza[1] = 'xyz';
     }
 }
+
+class ClassesPropAndInheritance {
+
+}
+function classesPropAndInheritance() {
+    class Pizza {
+        public toppings: string[] = [];
+
+        constructor(private name: string) {}
+
+        public addTopping(topping: string) {
+            this.toppings.push(topping);
+        }
+
+    }
+
+    const pizza = new Pizza('Pepperoni');
+    pizza.addTopping('pits');
+
+}
