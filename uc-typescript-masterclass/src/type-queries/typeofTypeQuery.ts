@@ -1,20 +1,23 @@
-const person = {
-    name: 'Brino',
-    age: 24
-}
+function a() {
+    const person = {
+        name: 'Brino',
+        age: 24
+    }
 
-type Person = typeof person;
-type PersonKeys = keyof Person;
+    type Person = typeof person;
+    type PersonKeys = keyof Person;
 
-type PersonTypes = Person[PersonKeys];
+    type PersonTypes = Person[PersonKeys];
 
-function getProperty<T, K extends keyof T>(obj: T, key: K) {
-    return obj[key];
-}
+    function getProperty<T, K extends keyof T>(obj: T, key: K) {
+        return obj[key];
+    }
 
-const personName = getProperty(person, 'name');
+    const personName = getProperty(person, 'name');
 
-const anotherPerson: Person = {
-    name: '',
-    age: 1
+    const anotherPerson: Person = {
+        name: '',
+        age: 1
+    }
+
 }
