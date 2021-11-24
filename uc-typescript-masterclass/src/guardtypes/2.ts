@@ -15,11 +15,14 @@ class Playlist {
     constructor(public name: string, public songs: Song[]) { }
 }
 
-function getItemName(item: Song | Playlist) {
-    if (item instanceof Song) {
-        return item.title
-    }
+function isSong(item): item is Song {
+    return item instanceof Song;
+}
 
+function getItemName(item: Song | Playlist) {
+    if (isSong(item)) {
+        return item.title;
+    }
     return item.name;
 }
 
