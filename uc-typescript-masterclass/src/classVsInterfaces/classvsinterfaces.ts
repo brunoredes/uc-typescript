@@ -10,4 +10,4 @@ function artistFactory({ name }: ArtistCreator) {
     return new ArtistCreator(name);
 }
 
-artistFactory({ name: 'todd' });
+artistFactory({ name: 'a' });
